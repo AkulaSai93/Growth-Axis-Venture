@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-instrument);
+  /* light palette, accents taken from the GrowthAxis logo */
+  --color-canvas: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-ink: #15122b;
+  --color-muted: #625f80;
+  --color-line: #e6e6e3;
+  --color-brand-violet: #6c4ef0;
+  --color-brand-pink: #d93a83;
+  --color-brand-orange: #f08a2c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility bg-brand {
+  background-image: linear-gradient(120deg, #6c4ef0 0%, #d93a83 55%, #f08a2c 100%);
+}
+
+@utility text-brand {
+  background-image: linear-gradient(120deg, #6c4ef0 0%, #d93a83 55%, #f08a2c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  #ventures svg,
+  #ventures line {
+    animation: none !important;
+  }
+}
+
+/* What we do: connection lines flow, orbit rings turn (on card hover) */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
