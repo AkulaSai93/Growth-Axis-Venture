@@ -16,7 +16,7 @@ import heroPhoto from "../../public/images/hero-students-walking.png";
 */
 export default function Hero() {
   return (
-    <section className="relative isolate min-h-[max(100svh,680px)] overflow-hidden bg-[#a9d0fa] lg:h-[max(60.3vw,calc(48.75vw_+_175px),calc(41.85vw_+_270px))] lg:min-h-0">
+    <section className="relative isolate min-h-[max(74svh,600px)] overflow-hidden sm:min-h-[max(100svh,680px)] bg-[#a9d0fa] lg:h-[max(60.3vw,calc(48.75vw_+_175px),calc(41.85vw_+_270px))] lg:min-h-0">
       <div className="absolute inset-x-0 bottom-0 -z-10 aspect-[5/4] [mask-image:linear-gradient(to_bottom,transparent,black_14%)] sm:aspect-[3/2] lg:bottom-[-6.6vw] lg:[mask-image:linear-gradient(to_bottom,transparent,black_5%)]">
         <Image
           src={heroPhoto}
@@ -32,16 +32,16 @@ export default function Hero() {
       </div>
 
       <div className="flex flex-col items-center px-5 pt-[clamp(110px,15vh,150px)] text-center sm:px-8 lg:pt-[max(96px,6.9vw)]">
-        <h1 className="max-w-5xl text-[2.05rem] font-medium leading-[1.04] tracking-[-0.045em] text-ink sm:text-6xl lg:max-w-none lg:text-[4.4vw]">
-          <span data-hero="line" className="block">
+        <h1 className="text-[6vw] font-medium leading-[1.08] tracking-[-0.045em] text-ink lg:text-[4.4vw] lg:leading-[1.04]">
+          <span data-hero="line" className="block whitespace-nowrap">
             Building growth for institutions.
           </span>
-          <span data-hero="line" className="block">
+          <span data-hero="line" className="block whitespace-nowrap">
             Creating opportunities for people.
           </span>
         </h1>
 
-        <p data-hero="fade" className="mt-5 max-w-2xl text-[15px] leading-relaxed text-ink/75 sm:text-lg lg:max-w-none lg:whitespace-nowrap">
+        <p data-hero="fade" className="mt-4 max-w-md text-balance text-sm leading-relaxed text-ink/75 sm:mt-5 sm:max-w-xl sm:text-base lg:text-lg lg:max-w-none lg:whitespace-nowrap">
           GrowthAxis Ventures works with education institutions, skilling organisations and the
           creative ecosystem
           <br className="hidden lg:block" /> to build partnerships, strengthen admissions and

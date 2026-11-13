@@ -88,7 +88,7 @@ export default function Footer() {
         {/* dashed divider + fine print */}
         <div
           data-reveal
-          className="mt-16 flex flex-col gap-3 border-t border-dashed border-white/25 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-16 flex flex-col items-center gap-3 border-t border-dashed border-white/25 pt-6 text-center text-xs text-white/60 sm:flex-row sm:text-left sm:items-center sm:justify-between"
         >
           <p>© 2026 GrowthAxis Ventures LLP</p>
           <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-white">
@@ -103,7 +103,7 @@ export default function Footer() {
         aria-hidden
         className="mx-auto mt-14 max-w-6xl px-5 pb-10 text-[clamp(52px,16.5vw,210px)] sm:px-8 md:mt-16 md:pb-14"
       >
-        <div className="relative w-fit pr-[0.2em] leading-[0.9] text-white">
+        <div className="relative mx-auto w-fit pr-[0.2em] leading-[0.9] text-white sm:mx-0">
           <p className="tracking-[-0.045em]">
             <span className="font-light">growth</span>
             <span className="font-semibold">axis</span>
