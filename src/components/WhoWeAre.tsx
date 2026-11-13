@@ -12,16 +12,15 @@ type Person = {
   photo?: StaticImageData;
 };
 
-const founder: Person = {
-  name: "Prabhat Ranjan Singh",
-  initials: "PR",
-  role: "Founder",
-  bio: "Prabhat leads GrowthAxis' work with institutions and organisations — across admissions, alliances, talent and operations.",
-  linkedin: "https://www.linkedin.com/in/prabhat-ranjan-96804336/",
-  photo: prabhatRanjan,
-};
-
-const advisors: Person[] = [
+const team: Person[] = [
+  {
+    name: "Prabhat Ranjan Singh",
+    initials: "PR",
+    role: "Founder",
+    bio: "Prabhat leads GrowthAxis' work with institutions and organisations — across admissions, alliances, talent and operations.",
+    linkedin: "https://www.linkedin.com/in/prabhat-ranjan-96804336/",
+    photo: prabhatRanjan,
+  },
   {
     name: "Ajay Thomas",
     initials: "AT",
@@ -37,6 +36,8 @@ const advisors: Person[] = [
   },
 ];
 
+const [founder, ...advisors] = team;
+
 const experience = [
   { years: "25", label: "years in Sales & Business Development" },
   { years: "25", label: "years in Sales & Higher Education Marketing" },
@@ -44,47 +45,43 @@ const experience = [
 
 export default function WhoWeAre() {
   return (
-    <section id="team" className="scroll-mt-24 border-t border-line bg-surface py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div>
-          <p className="text-sm font-medium text-muted">Who we are</p>
-          <h2 className="mt-4 text-4xl font-medium leading-[1.05] tracking-[-0.04em] text-ink md:text-[3.25rem]">
-            A partner,
-            <br />
-            <span className="text-ink/45">not an outside vendor.</span>
-          </h2>
-        </div>
+    <section id="team" className="scroll-mt-24 bg-surface pb-20 pt-10 md:pb-28 md:pt-12">
+      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <p data-reveal className="text-sm font-medium text-muted">Who we are</p>
+        <h2 data-reveal className="mt-3 text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-ink md:text-[2.75rem]">
+          A partner, not an outside vendor.
+        </h2>
 
         {/* experience */}
-        <dl className="mt-14 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 md:mt-16">
+        <dl data-stagger className="mx-auto mt-10 flex max-w-2xl flex-col items-center justify-center gap-6 sm:flex-row sm:gap-0 sm:divide-x sm:divide-line">
           {experience.map((e) => (
-            <div key={e.label} className="flex items-baseline gap-4 bg-canvas px-6 py-7 sm:px-8">
-              <dt className="text-5xl font-medium tracking-[-0.04em] text-ink md:text-6xl">
-                {e.years}
-              </dt>
-              <dd className="max-w-[16rem] text-[15px] leading-snug text-muted">{e.label}</dd>
+            <div key={e.label} className="flex items-center gap-3 sm:px-10">
+              <dt className="text-5xl font-medium tracking-[-0.04em] text-ink">{e.years}</dt>
+              <dd className="max-w-[11rem] text-left text-sm leading-snug text-muted">{e.label}</dd>
             </div>
           ))}
         </dl>
 
-        {/* people */}
-        <div className="mt-5 grid gap-5 lg:grid-cols-3">
-          {/* founder */}
-          <article className="grid overflow-hidden rounded-lg border border-line bg-canvas sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:col-span-2">
-            <Portrait person={founder} sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 100vw" className="aspect-square sm:aspect-auto sm:min-h-80" />
-            <div className="flex flex-col p-7 sm:p-8">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">Founder</p>
+        {/* team: founder card + stacked advisors */}
+        <div data-stagger className="mt-12 grid gap-5 text-left md:mt-14 lg:grid-cols-3">
+          <article className="grid overflow-hidden rounded border border-line bg-surface sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:col-span-2">
+            <Portrait
+              person={founder}
+              sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 100vw"
+              className="aspect-[4/3] sm:aspect-auto sm:min-h-80"
+            />
+            <div className="flex flex-col p-6 sm:p-8">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">{founder.role}</p>
               <h3 className="mt-3 text-3xl font-medium tracking-[-0.03em] text-ink">{founder.name}</h3>
               <p className="mt-4 text-[15px] leading-relaxed text-muted">{founder.bio}</p>
               <LinkedIn href={founder.linkedin} name={founder.name} className="mt-auto pt-8" />
             </div>
           </article>
 
-          {/* advisors */}
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
             {advisors.map((a) => (
-              <article key={a.name} className="flex items-center gap-5 rounded-lg border border-line bg-canvas p-5">
-                <Portrait person={a} sizes="96px" className="h-24 w-24 shrink-0 rounded-md" small />
+              <article key={a.name} className="flex items-center gap-5 rounded border border-line bg-surface p-5">
+                <Portrait person={a} sizes="96px" className="h-24 w-24 shrink-0 rounded-sm" small />
                 <div className="min-w-0">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">{a.role}</p>
                   <h3 className="mt-1.5 truncate text-xl font-medium tracking-[-0.02em] text-ink">{a.name}</h3>
@@ -95,10 +92,10 @@ export default function WhoWeAre() {
           </div>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div data-reveal className="mt-10">
           <Link
             href="/about"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-ink/20 underline-offset-8 transition-colors hover:decoration-ink"
+            className="group inline-flex items-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
           >
             More about GrowthAxis
             <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -126,26 +123,32 @@ function Portrait({
   if (person.photo) {
     return (
       <div className={`relative overflow-hidden bg-ink ${className}`}>
-        <Image src={person.photo} alt={`${person.name}, ${person.role} at GrowthAxis Ventures`} fill sizes={sizes} placeholder="blur" className="object-cover object-top" />
+        <Image
+          src={person.photo}
+          alt={`${person.name}, ${person.role} at GrowthAxis Ventures`}
+          fill
+          sizes={sizes}
+          placeholder="blur"
+          className="object-cover object-top"
+        />
       </div>
     );
   }
-  const { initials } = person;
   return (
     <div
       className={`relative grid place-items-center overflow-hidden bg-ink [background-image:radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:14px_14px] ${className}`}
       aria-hidden
     >
-      <span className={`font-medium tracking-[-0.04em] text-white ${small ? "text-2xl" : "text-7xl"}`}>{initials}</span>
+      <span className={`font-medium tracking-[-0.04em] text-white ${small ? "text-2xl" : "text-7xl"}`}>{person.initials}</span>
       <svg viewBox="0 0 12 12" className={`absolute ${small ? "right-2 top-2 h-2 w-2" : "right-5 top-5 h-3 w-3"}`}>
         <defs>
-          <linearGradient id={`portrait-arrow-${initials}`} x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id={`portrait-arrow-${person.initials}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#f7943b" />
             <stop offset="50%" stopColor="#e2458e" />
             <stop offset="100%" stopColor="#7b5cf5" />
           </linearGradient>
         </defs>
-        <path d="M0 0h12v12L8 8V4H4z" fill={`url(#portrait-arrow-${initials})`} />
+        <path d="M0 0h12v12L8 8V4H4z" fill={`url(#portrait-arrow-${person.initials})`} />
       </svg>
     </div>
   );

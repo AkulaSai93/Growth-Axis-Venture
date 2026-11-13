@@ -4,7 +4,7 @@
   --font-sans: var(--font-manrope);
   --font-serif: var(--font-instrument);
   /* light palette, accents taken from the GrowthAxis logo */
-  --color-canvas: #f7f7f5;
+  --color-canvas: #ffffff;
   --color-surface: #ffffff;
   --color-ink: #15122b;
   --color-muted: #625f80;
@@ -26,6 +26,7 @@
 }
 
 html {
+  background: #ffffff;
   scroll-behavior: smooth;
 }
 
@@ -34,38 +35,17 @@ body {
   color: var(--color-ink);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-rise {
-  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .animate-rise,
-  #ventures svg,
+  #ventures svg *,
   #ventures line {
     animation: none !important;
+    transition: none !important;
   }
 }
 
-/* What we do: connection lines flow, orbit rings turn (on card hover) */
+/* What we do: network lines flow on card hover */
 @keyframes dash {
   to {
     stroke-dashoffset: -14;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }

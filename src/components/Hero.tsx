@@ -1,50 +1,61 @@
 import Image from "next/image";
-import libraryAtrium from "../../public/images/hero-library.png";
+import Link from "next/link";
+import heroPhoto from "../../public/images/hero-students-walking.png";
 
 /*
-  From lg up the hero takes the photo's own 16:9 shape, so the photo fills it
-  edge to edge without any cropping, with the copy centred over a dark
-  overlay (the students sit low, heads ~79% down, so it clears them). Below lg the
-  copy sits on a dark band with the full photo underneath.
+  Figma "MacBook Pro 14'" hero (node 36:449): the photo fills the whole hero at
+  full width (3:2, extending ~6.6vw below the bottom edge) with the sky running to
+  the top; the copy sits centred on the sky.
+
+  The students' heads sit ~32.7vw above the hero's bottom edge, so from lg up the
+  hero height is the design's 60.3vw, grown only as needed to keep the "Talk to
+  us" button at least 20px above them. The hero's background is the photo's own
+  sky colour (sampled from its top edge) and the photo's top edge fades into it,
+  so any extra height reads as more sky. Phones use the same layout with the
+  photo slightly enlarged (5:4, cropped at the sides) so the students stay big.
 */
 export default function Hero() {
   return (
-    <section className="relative isolate flex flex-col overflow-hidden bg-ink lg:block lg:aspect-video">
-      {/* phones/tablets only: blurred backdrop behind the stacked layout */}
-      <div aria-hidden className="absolute inset-0 -z-20 lg:hidden">
-        <Image src={libraryAtrium} alt="" fill sizes="50vw" className="scale-110 object-cover opacity-50 blur-3xl" />
-        <div className="absolute inset-0 bg-ink/70" />
-      </div>
-
-      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 text-center sm:px-8 lg:absolute lg:inset-0 lg:flex lg:max-w-none lg:flex-col lg:items-center lg:justify-center lg:pb-[8vw] lg:pt-16">
-        <h1 className="animate-rise mx-auto text-[2.25rem] font-medium leading-[1.05] tracking-[-0.045em] text-white [animation-delay:80ms] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:text-[3.25rem] lg:text-[4.1vw]">
-          Building growth for institutions.
-          <br />
-          <span className="text-white/80">Creating opportunities for people.</span>
-        </h1>
-
-        <p className="animate-rise mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] sm:text-lg lg:mt-[1.6vw] lg:max-w-[56vw] lg:text-[clamp(16px,1.3vw,24px)] lg:leading-[1.55] [animation-delay:160ms]">
-          GrowthAxis Ventures works with education institutions, skilling organisations and the
-          creative ecosystem to build partnerships, strengthen admissions and unlock new
-          opportunities.
-        </p>
-      </div>
-
-      {/* the full photo: in flow below lg, the whole background from lg up */}
-      <div className="animate-rise relative mx-5 mb-10 mt-8 aspect-video overflow-hidden rounded-lg border border-white/10 shadow-2xl shadow-black/40 [animation-delay:240ms] sm:mx-8 lg:absolute lg:inset-0 lg:-z-10 lg:m-0 lg:aspect-auto lg:rounded-none lg:border-0 lg:shadow-none">
+    <section className="relative isolate min-h-[max(100svh,680px)] overflow-hidden bg-[#a9d0fa] lg:h-[max(60.3vw,calc(48.75vw_+_175px),calc(41.85vw_+_270px))] lg:min-h-0">
+      <div className="absolute inset-x-0 bottom-0 -z-10 aspect-[5/4] [mask-image:linear-gradient(to_bottom,transparent,black_14%)] sm:aspect-[3/2] lg:bottom-[-6.6vw] lg:[mask-image:linear-gradient(to_bottom,transparent,black_5%)]">
         <Image
-          src={libraryAtrium}
-          alt="Students studying in a bright, modern university library atrium"
+          src={heroPhoto}
+          alt="Four smiling university students walking together across a sunny campus"
           fill
           preload
           quality={90}
           placeholder="blur"
           sizes="100vw"
-          className="object-cover"
+          data-hero="bg"
+          className="object-cover object-bottom"
         />
-        {/* the atrium is bright: an even dark overlay plus a deeper glow behind the centred copy */}
-        <div aria-hidden className="absolute inset-0 hidden bg-black/65 lg:block" />
-        <div aria-hidden className="absolute inset-0 hidden bg-[radial-gradient(ellipse_55%_42%_at_50%_45%,rgba(0,0,0,0.6),transparent)] lg:block" />
+      </div>
+
+      <div className="flex flex-col items-center px-5 pt-[clamp(110px,15vh,150px)] text-center sm:px-8 lg:pt-[max(96px,6.9vw)]">
+        <h1 className="max-w-5xl text-[2.05rem] font-medium leading-[1.04] tracking-[-0.045em] text-ink sm:text-6xl lg:max-w-none lg:text-[4.4vw]">
+          <span data-hero="line" className="block">
+            Building growth for institutions.
+          </span>
+          <span data-hero="line" className="block">
+            Creating opportunities for people.
+          </span>
+        </h1>
+
+        <p data-hero="fade" className="mt-5 max-w-2xl text-[15px] leading-relaxed text-ink/75 sm:text-lg lg:max-w-none lg:whitespace-nowrap">
+          GrowthAxis Ventures works with education institutions, skilling organisations and the
+          creative ecosystem
+          <br className="hidden lg:block" /> to build partnerships, strengthen admissions and
+          unlock new opportunities.
+        </p>
+
+        <div data-hero="fade" className="mt-8">
+          <Link
+            href="/contact"
+            className="inline-block rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
+          >
+            Talk to us
+          </Link>
+        </div>
       </div>
     </section>
   );

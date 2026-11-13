@@ -36,7 +36,7 @@ export function Logo({ light = false }: { light?: boolean }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  // white-on-dark while over the hero photo, light glass once scrolled past it
+  // frosted bar once the hero has scrolled out from under the header
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -51,29 +51,24 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const overHero = !scrolled && !open;
-
   return (
     <header
+      data-header
       className={`fixed inset-x-0 top-0 z-50 border-b px-4 py-3 transition-colors duration-300 ${
-        scrolled ? "border-line bg-canvas/85 backdrop-blur-xl" : "border-transparent"
+        scrolled ? "border-line bg-white" : "border-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between">
-        <Logo light={overHero} />
+        <Logo />
 
         <nav
-          className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-lg border p-1 text-sm backdrop-blur-xl transition-colors md:flex ${
-            overHero
-              ? "border-white/15 bg-white/10 text-white/80"
-              : "border-line bg-surface/80 text-muted shadow-lg shadow-ink/5"
-          }`}
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded border border-line bg-white p-1 text-sm text-ink/75 md:flex"
         >
           {links.map((l) => (
             <Link
               key={l.name}
               href={l.href}
-              className={`rounded-md px-4 py-2 transition-colors ${overHero ? "hover:bg-white/10 hover:text-white" : "hover:bg-canvas hover:text-ink"}`}
+              className="rounded-sm px-4 py-2 transition-colors hover:text-ink"
             >
               {l.name}
             </Link>
@@ -82,17 +77,13 @@ export default function Header() {
 
         <Link
           href="/contact"
-          className={`hidden rounded-md px-5 py-2.5 text-sm font-semibold transition-colors md:block ${
-            overHero ? "bg-white text-ink hover:bg-white/90" : "bg-ink text-white shadow-lg shadow-ink/20 hover:bg-ink/90"
-          }`}
+          className="hidden rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink/90 md:block"
         >
           Partner with us
         </Link>
 
         <button
-          className={`rounded-md border p-2.5 backdrop-blur-xl md:hidden ${
-            overHero ? "border-white/20 bg-white/10 text-white" : "border-line bg-surface/80 text-ink"
-          }`}
+          className="rounded-md border border-line bg-white p-2.5 text-ink md:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -104,7 +95,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="mx-auto mt-2 max-w-6xl rounded-lg border border-line bg-surface p-3 shadow-lg shadow-ink/10 md:hidden">
+        <nav className="mx-auto mt-2 max-w-6xl rounded-lg border border-line bg-surface p-3 md:hidden">
           {links.map((l) => (
             <Link key={l.name} href={l.href} className="block rounded-md px-4 py-3 text-ink hover:bg-canvas" onClick={() => setOpen(false)}>
               {l.name}
