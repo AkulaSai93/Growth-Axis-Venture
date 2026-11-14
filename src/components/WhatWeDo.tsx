@@ -42,7 +42,7 @@ export default function WhatWeDo() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div data-reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium text-muted">What we do</p>
-          <h2 className="mt-3 text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-ink md:text-[2.75rem]">
+          <h2 data-words className="mt-3 text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-ink md:text-[2.75rem]">
             Three ventures. One growth axis.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
@@ -56,22 +56,31 @@ export default function WhatWeDo() {
             <Link
               key={v.no}
               href={v.href}
-              className="group flex flex-col rounded-lg border border-line bg-surface p-3 transition-[translate,border-color] hover:-translate-y-1 hover:border-ink/40"
+              className="group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface p-3 transition-[translate,border-color] duration-300 ease-out hover:border-transparent motion-safe:hover:-translate-y-1.5"
             >
-              {/* visual stage: plain white */}
-              <div className="relative h-60 overflow-hidden rounded-md border border-line/60">
-                {v.visual}
+              {/* hover: a hairline of the logo gradient around the whole card */}
+              <span aria-hidden className="gradient-ring z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              {/* visual stage: plain white; the diagram eases in a touch on hover */}
+              <div className="relative h-60 overflow-hidden rounded-md border border-line/60 transition-colors duration-300 group-hover:border-ink/15">
+                <div className="absolute inset-0 transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.04]">
+                  <div data-drift className="absolute inset-0">
+                    {v.visual}
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-1 flex-col pt-6">
-                <h3 className="text-2xl font-medium tracking-[-0.03em] text-ink">{v.name}</h3>
+                <h3 className="text-2xl font-medium tracking-[-0.03em] text-ink transition-transform duration-300 ease-out motion-safe:group-hover:translate-x-1">
+                  {v.name}
+                </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted">{v.description}</p>
 
                 {/* button styling on a span: the whole card is already the link */}
                 <span className="mt-auto block pt-7">
-                  <span className="flex w-full items-center justify-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-colors group-hover:bg-ink/90">
+                  <span className="flex w-full items-center justify-center gap-2 btn-glow rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white">
                     Learn more
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                       <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
                   </span>
@@ -102,10 +111,10 @@ function Chip({ children, className = "" }: { children: ReactNode; className?: s
 
 function AlliancesVisual() {
   const partners = [
-    { label: "Universities", pos: "left-[7%] top-[15%]", end: [24, 22] },
-    { label: "Skilling orgs", pos: "right-[7%] top-[15%]", end: [76, 22] },
-    { label: "Programmes", pos: "left-[7%] bottom-[15%]", end: [24, 78] },
-    { label: "Colleges", pos: "right-[7%] bottom-[15%]", end: [76, 78] },
+    { label: "Universities", pos: "left-[7%] top-[15%] group-hover:-translate-x-1 group-hover:-translate-y-1", end: [24, 22] },
+    { label: "Skilling orgs", pos: "right-[7%] top-[15%] group-hover:translate-x-1 group-hover:-translate-y-1", end: [76, 22] },
+    { label: "Programmes", pos: "left-[7%] bottom-[15%] group-hover:-translate-x-1 group-hover:translate-y-1", end: [24, 78] },
+    { label: "Colleges", pos: "right-[7%] bottom-[15%] group-hover:translate-x-1 group-hover:translate-y-1", end: [76, 78] },
   ];
   return (
     <div className="absolute inset-0">
@@ -146,7 +155,7 @@ function AlliancesVisual() {
       </div>
 
       {partners.map((p) => (
-        <Chip key={p.label} className={`absolute ${p.pos}`}>
+        <Chip key={p.label} className={`absolute transition-transform duration-500 ease-out ${p.pos}`}>
           <span className="h-1 w-1 rounded-full bg-ink" />
           {p.label}
         </Chip>
@@ -171,7 +180,7 @@ function FunnelVisual() {
           <div
             key={s.label}
             style={{ transitionDelay: `${i * 60}ms` }}
-            className={`flex h-8 items-center justify-between rounded-md border px-3 text-[11.5px] font-medium tracking-[-0.01em] transition-transform duration-500 group-hover:scale-x-[1.03] ${s.width} ${s.tone}`}
+            className={`flex h-8 items-center justify-between rounded-md border px-3 text-[11.5px] font-medium tracking-[-0.01em] transition-[translate,scale] duration-500 ease-out group-hover:scale-x-[1.03] group-hover:-translate-y-0.5 ${s.width} ${s.tone}`}
           >
             <span>{s.label}</span>
             {i === stages.length - 1 ? (

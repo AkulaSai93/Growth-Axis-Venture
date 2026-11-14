@@ -48,7 +48,7 @@ export default function WhoWeAre() {
     <section id="team" className="scroll-mt-24 bg-surface pb-20 pt-10 md:pb-28 md:pt-12">
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <p data-reveal className="text-sm font-medium text-muted">Who we are</p>
-        <h2 data-reveal className="mt-3 text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-ink md:text-[2.75rem]">
+        <h2 data-words className="mt-3 text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-ink md:text-[2.75rem]">
           A partner, not an outside vendor.
         </h2>
 
@@ -56,7 +56,7 @@ export default function WhoWeAre() {
         <dl data-stagger className="mx-auto mt-10 flex max-w-2xl flex-col items-center justify-center gap-6 sm:flex-row sm:gap-0 sm:divide-x sm:divide-line">
           {experience.map((e) => (
             <div key={e.label} className="flex items-center gap-3 sm:px-10">
-              <dt className="text-5xl font-medium tracking-[-0.04em] text-ink">{e.years}</dt>
+              <dt data-count className="text-5xl font-medium tabular-nums tracking-[-0.04em] text-ink">{e.years}</dt>
               <dd className="max-w-[11rem] text-left text-sm leading-snug text-muted">{e.label}</dd>
             </div>
           ))}
@@ -68,9 +68,9 @@ export default function WhoWeAre() {
             <Portrait
               person={founder}
               sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 100vw"
-              className="aspect-[4/3] sm:aspect-auto sm:min-h-80"
+              className="aspect-square sm:aspect-auto sm:min-h-80"
             />
-            <div className="flex flex-col p-6 sm:p-8">
+            <div className="flex flex-col p-7 sm:p-8">
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">{founder.role}</p>
               <h3 className="mt-3 text-3xl font-medium tracking-[-0.03em] text-ink">{founder.name}</h3>
               <p className="mt-4 text-[15px] leading-relaxed text-muted">{founder.bio}</p>
@@ -95,7 +95,7 @@ export default function WhoWeAre() {
         <div data-reveal className="mt-10">
           <Link
             href="/about"
-            className="group inline-flex items-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
+            className="btn-glow group inline-flex items-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
           >
             More about GrowthAxis
             <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -122,7 +122,7 @@ function Portrait({
 }) {
   if (person.photo) {
     return (
-      <div className={`relative overflow-hidden bg-ink ${className}`}>
+      <div data-wipe className={`relative overflow-hidden bg-ink ${className}`}>
         <Image
           src={person.photo}
           alt={`${person.name}, ${person.role} at GrowthAxis Ventures`}
@@ -136,6 +136,7 @@ function Portrait({
   }
   return (
     <div
+      data-wipe
       className={`relative grid place-items-center overflow-hidden bg-ink [background-image:radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:14px_14px] ${className}`}
       aria-hidden
     >

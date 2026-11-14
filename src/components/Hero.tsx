@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import heroPhoto from "../../public/images/hero-students-walking.png";
+import heroPhoto from "../../public/images/hero-campus-walk.png";
 
 /*
-  Figma "MacBook Pro 14'" hero (node 36:449): the photo fills the whole hero at
-  full width (3:2, extending ~6.6vw below the bottom edge) with the sky running to
-  the top; the copy sits centred on the sky.
+  Figma "MacBook Pro 14'" hero (node 36:449) layout with a wider campus photo
+  (Figma AI, node 41:2): the photo sits full width (3:2) on the hero's bottom edge,
+  students small in the lower third, sky running to the top; copy centred on it.
 
-  The students' heads sit ~32.7vw above the hero's bottom edge, so from lg up the
-  hero height is the design's 60.3vw, grown only as needed to keep the "Talk to
-  us" button at least 20px above them. The hero's background is the photo's own
-  sky colour (sampled from its top edge) and the photo's top edge fades into it,
-  so any extra height reads as more sky. Phones use the same layout with the
-  photo slightly enlarged (5:4, cropped at the sides) so the students stay big.
+  The students' heads sit 48.5% down the photo (~34.4vw above the hero's bottom
+  edge), so from lg up the hero height is the design's 60.3vw, grown only as
+  needed to keep the "Talk to us" button at least 20px above them. The hero's
+  background is the photo's own sky colour (sampled from its top edge) and the
+  photo's top edge fades into it, so any extra height reads as more sky. Phones
+  crop the photo to 4:5 (sides trimmed) so the students stay a readable size.
 */
 export default function Hero() {
   return (
-    <section className="relative isolate min-h-[max(74svh,600px)] overflow-hidden sm:min-h-[max(100svh,680px)] bg-[#a9d0fa] lg:h-[max(60.3vw,calc(48.75vw_+_175px),calc(41.85vw_+_270px))] lg:min-h-0">
-      <div className="absolute inset-x-0 bottom-0 -z-10 aspect-[5/4] [mask-image:linear-gradient(to_bottom,transparent,black_14%)] sm:aspect-[3/2] lg:bottom-[-6.6vw] lg:[mask-image:linear-gradient(to_bottom,transparent,black_5%)]">
+    <section className="relative isolate min-h-[max(78svh,640px)] overflow-hidden bg-[#9ecdfa] sm:min-h-[max(100svh,680px)] lg:h-[max(60.3vw,calc(50.4vw_+_174px),calc(43.6vw_+_270px))] lg:min-h-0">
+      <div className="absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] [mask-image:linear-gradient(to_bottom,transparent,black_14%)] sm:aspect-[3/2] lg:[mask-image:linear-gradient(to_bottom,transparent,black_5%)]">
         <Image
           src={heroPhoto}
           alt="Four smiling university students walking together across a sunny campus"
@@ -31,7 +31,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="flex flex-col items-center px-5 pt-[clamp(110px,15vh,150px)] text-center sm:px-8 lg:pt-[max(96px,6.9vw)]">
+      <div data-hero-copy className="flex flex-col items-center px-5 pt-[clamp(110px,15vh,150px)] text-center sm:px-8 lg:pt-[max(96px,6.9vw)]">
         <h1 className="text-[6vw] font-medium leading-[1.08] tracking-[-0.045em] text-ink lg:text-[4.4vw] lg:leading-[1.04]">
           <span data-hero="line" className="block whitespace-nowrap">
             Building growth for institutions.
@@ -51,7 +51,7 @@ export default function Hero() {
         <div data-hero="fade" className="mt-8">
           <Link
             href="/contact"
-            className="inline-block rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
+            className="btn-glow inline-block rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
           >
             Talk to us
           </Link>

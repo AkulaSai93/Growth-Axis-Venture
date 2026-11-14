@@ -28,12 +28,12 @@ const columns = [
 */
 export default function Footer() {
   return (
-    <footer className="relative -mt-3 overflow-hidden bg-[linear-gradient(to_bottom,#231d46_0%,#15122b_45%,#0a0915_100%)] text-white">
-      <div className="mx-auto max-w-6xl px-5 pt-20 sm:px-8 md:pt-24">
+    <footer className="relative -mt-6 overflow-hidden md:-mt-10 bg-[linear-gradient(to_bottom,#231d46_0%,#15122b_45%,#0a0915_100%)] text-white">
+      <div className="mx-auto max-w-6xl px-5 pt-24 sm:px-8 md:pt-32">
         {/* tagline + socials · links */}
         <div data-stagger className="grid gap-12 md:grid-cols-[1.2fr_1fr]">
           <div>
-            <h2 className="text-3xl font-medium leading-[1.08] tracking-[-0.03em] md:text-[2.5rem]">
+            <h2 data-words className="text-3xl font-medium leading-[1.08] tracking-[-0.03em] md:text-[2.5rem]">
               Let&apos;s talk about your growth.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
@@ -43,7 +43,7 @@ export default function Footer() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white/90"
+                className="btn-glow group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-ink transition-colors hover:text-white"
               >
                 Talk to us
                 <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
@@ -97,17 +97,15 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* oversized logo, rebuilt in code (light "growth", bold "axis", VENTURES, gradient arrow) so it stays sharp */}
+      {/* oversized logo, rebuilt in code to match the header logo (light "growthaxis", VENTURES, gradient arrow) so it stays sharp */}
       <div
-        data-reveal
+        data-footer-logo
         aria-hidden
         className="mx-auto mt-14 max-w-6xl px-5 pb-10 text-[clamp(52px,16.5vw,210px)] sm:px-8 md:mt-16 md:pb-14"
       >
-        <div className="relative mx-auto w-fit pr-[0.2em] leading-[0.9] text-white sm:mx-0">
-          <p className="tracking-[-0.045em]">
-            <span className="font-light">growth</span>
-            <span className="font-semibold">axis</span>
-          </p>
+        <div className="relative mx-auto w-fit pr-[0.2em] leading-[0.9] text-white sm:ml-[0.15em] sm:mr-0">
+          {/* same as the header logo: one light weight throughout */}
+          <p className="font-light tracking-[-0.045em]">growthaxis</p>
           <p className="mt-[0.12em] text-right text-[0.13em] font-medium uppercase leading-none tracking-[0.62em] text-[#b4b0d9]">
             Ventures
           </p>

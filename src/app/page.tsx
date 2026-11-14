@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Header />
       {/* white page sits over the footer with a rounded bottom edge */}
-      <main className="relative z-10 flex-1 overflow-hidden rounded-b-xl bg-surface">
+      <main className="relative z-10 flex-1 overflow-hidden rounded-b-3xl bg-surface md:rounded-b-[40px]">
         <Hero />
         <WhatWeDo />
         <WhoWeAre />

@@ -77,7 +77,7 @@ export default function Header() {
 
         <Link
           href="/contact"
-          className="hidden rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink/90 md:block"
+          className="btn-glow hidden rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white md:block"
         >
           Partner with us
         </Link>
@@ -103,7 +103,7 @@ export default function Header() {
           ))}
           <Link
             href="/contact"
-            className="mt-2 block rounded-md bg-ink py-3 text-center font-semibold text-white"
+            className="btn-glow mt-2 block rounded-md bg-ink py-3 text-center font-semibold text-white"
             onClick={() => setOpen(false)}
           >
             Partner with us

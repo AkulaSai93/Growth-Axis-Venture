@@ -49,3 +49,39 @@ body {
     stroke-dashoffset: -14;
   }
 }
+
+/* Card hover: a hairline of the logo gradient around the whole card edge.
+   Place inside a `relative overflow-hidden rounded-*` card; fade it in with opacity. */
+@utility gradient-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: linear-gradient(120deg, #6c4ef0 0%, #d93a83 55%, #f08a2c 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Button hover: the logo gradient fades in over the button's own colour.
+   Also lights up when the button sits inside a hovered `.group` card. */
+@utility btn-glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(120deg, #6c4ef0 0%, #d93a83 55%, #f08a2c 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  &:hover::before,
+  &:focus-visible::before,
+  :where(.group):hover &::before {
+    opacity: 1;
+  }
+}
