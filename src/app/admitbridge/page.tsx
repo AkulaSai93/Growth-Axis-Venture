@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Motion from "@/components/Motion";
 import PartnerCards, { type Partner } from "@/components/PartnerCards";
-import loungePhoto from "../../../public/images/admitbridge-lounge.png";
+import graduationPhoto from "../../../public/images/admitbridge-graduation.png";
 
 export const metadata: Metadata = {
   title: "AdmitBridge | Extended Admissions Sales Team",
@@ -43,16 +43,21 @@ export default function AdmitBridgePage() {
       <Header />
       {/* white page sits over the footer with a rounded bottom edge (same as home) */}
       <main className="relative z-10 flex-1 overflow-hidden rounded-b-3xl bg-surface md:rounded-b-[40px]">
-        {/* hero: a people-free admissions lounge (Figma AI, node 51:2) fills the screen;
-            its upper half is plain white wall, so the centred copy (from the live page)
-            sits on it without an overlay */}
-        <section className="relative isolate flex min-h-[max(100svh,600px)] justify-center overflow-hidden bg-[#e9e4df] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:px-8">
-          {/* phones and tablets: the lounge sits along the bottom (cropped to the armchairs and
-              window) with its wall fading into a matching background, so the copy
-              stays on plain wall; from lg up the photo fills the whole hero */}
-          <div className="absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] [mask-image:linear-gradient(to_bottom,transparent,black_22%)] sm:aspect-[3/2] lg:inset-0 lg:aspect-auto lg:[mask-image:none]">
+        {/* hero: graduation caps tossed into a golden-hour sky, no people (Figma AI, node 55:3).
+            The centre stays clear to 64% down the photo (~20vw above the hero bottom).
+            The photo runs full width along the bottom; its upper part is open sky,
+            so the centred copy (from the live page) sits on plain sky with no
+            overlay. The section's background is that sky colour and the photo's top
+            edge fades into it, so the hero can fill the screen at any size. On phones
+            and tablets the photo is cropped tighter (4:5, 4:3) so its subject stays
+            a readable size, and the phone hero is a compact 640px. */}
+        <section className="relative isolate flex min-h-[640px] justify-center overflow-hidden bg-[#8db9e7] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:min-h-[max(100svh,600px)] sm:px-8 lg:min-h-[max(100svh,56.25vw,calc(20vw_+_400px))]">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] [mask-image:linear-gradient(to_bottom,transparent,black_10%)] sm:aspect-[4/3] lg:aspect-video"
+          >
             <Image
-              src={loungePhoto}
+              src={graduationPhoto}
               alt=""
               fill
               preload
@@ -60,12 +65,12 @@ export default function AdmitBridgePage() {
               placeholder="blur"
               sizes="100vw"
               data-hero="bg"
-              className="object-cover object-[72%_100%] sm:object-[60%_100%] lg:object-[22%_60%]"
+              className="object-cover object-bottom"
             />
           </div>
 
           <div data-hero-copy>
-            <p data-hero="fade" className="text-sm font-medium text-ink/70">
+            <p data-hero="fade" className="text-sm font-medium text-ink/80">
               Built by GrowthAxis Ventures
             </p>
             <h1 className="mt-4 text-[2.6rem] font-medium leading-[1.04] tracking-[-0.045em] text-ink sm:text-6xl lg:text-[4.4vw]">
@@ -73,7 +78,7 @@ export default function AdmitBridgePage() {
                 AdmitBridge
               </span>
             </h1>
-            <p data-hero="fade" className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-ink/80 sm:text-lg lg:max-w-2xl">
+            <p data-hero="fade" className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-ink sm:text-lg lg:max-w-2xl">
               Your Extended Admissions Sales Team, powered by specialised, course-specific Pods and the ACE model.
               {" "}Dedicated Pods work under the institution&apos;s identity, managing the
               journey from enquiry to enrolment.

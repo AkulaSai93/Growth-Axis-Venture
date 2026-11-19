@@ -8,7 +8,7 @@ import PartnerCards, { BookVisual, type Partner } from "@/components/PartnerCard
 import aeroLogo from "../../../public/partners/aero.png";
 import upgradLogo from "../../../public/partners/upgrad-school-of-technology.png";
 import zskillupLogo from "../../../public/partners/zskillup.png";
-import atriumPhoto from "../../../public/images/growth-alliances-atrium.png";
+import campusPhoto from "../../../public/images/growth-alliances-campus.png";
 
 export const metadata: Metadata = {
   title: "Growth Alliances | GrowthAxis Ventures",
@@ -58,24 +58,34 @@ export default function GrowthAlliancesPage() {
       <Header />
       {/* white page sits over the footer with a rounded bottom edge (same as home) */}
       <main className="relative z-10 flex-1 overflow-hidden rounded-b-3xl bg-surface md:rounded-b-[40px]">
-        {/* hero: a people-free university atrium (Figma AI, node 50:2) fills the section;
-            its upper half is calm white ceiling, so the centred copy (from the live
-            page) sits on it without an overlay */}
-        <section className="relative isolate flex min-h-[max(100svh,600px)] justify-center overflow-hidden bg-[#eae9e8] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:px-8">
-          <Image
-            src={atriumPhoto}
-            alt=""
-            fill
-            preload
-            quality={90}
-            placeholder="blur"
-            sizes="100vw"
-            data-hero="bg"
-            className="-z-10 object-cover object-[55%_22%]"
-          />
+        {/* hero: a people-free brick campus quad under clear blue sky (Figma AI, node 55:2).
+            The building starts 61.5% down the photo (~21.7vw above the hero bottom).
+            The photo runs full width along the bottom; its upper part is open sky,
+            so the centred copy (from the live page) sits on plain sky with no
+            overlay. The section's background is that sky colour and the photo's top
+            edge fades into it, so the hero can fill the screen at any size. On phones
+            and tablets the photo is cropped tighter (4:5, 4:3) so its subject stays
+            a readable size, and the phone hero is a compact 640px. */}
+        <section className="relative isolate flex min-h-[640px] justify-center overflow-hidden bg-[#409ef7] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:min-h-[max(100svh,600px)] sm:px-8 lg:min-h-[max(100svh,56.25vw,calc(21.7vw_+_400px))]">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] [mask-image:linear-gradient(to_bottom,transparent,black_10%)] sm:aspect-[4/3] lg:aspect-video"
+          >
+            <Image
+              src={campusPhoto}
+              alt=""
+              fill
+              preload
+              quality={90}
+              placeholder="blur"
+              sizes="100vw"
+              data-hero="bg"
+              className="object-cover object-bottom"
+            />
+          </div>
 
           <div data-hero-copy>
-            <p data-hero="fade" className="text-sm font-medium text-ink/70">
+            <p data-hero="fade" className="text-sm font-medium text-ink/80">
               What we do
             </p>
             <h1 className="mt-4 text-[2.6rem] font-medium leading-[1.04] tracking-[-0.045em] text-ink sm:text-6xl lg:text-[4.4vw]">
@@ -83,7 +93,7 @@ export default function GrowthAlliancesPage() {
                 Growth Alliances
               </span>
             </h1>
-            <p data-hero="fade" className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-ink/80 sm:text-lg lg:max-w-none lg:text-[1.3vw]">
+            <p data-hero="fade" className="mx-auto mt-6 max-w-xl text-balance text-base leading-relaxed text-ink sm:text-lg lg:max-w-none lg:text-[1.3vw]">
               We work alongside education and skilling organisations
               <br className="hidden lg:block" /> to take their programmes to the right institutions.
             </p>
