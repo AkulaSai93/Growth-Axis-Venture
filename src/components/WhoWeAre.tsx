@@ -17,7 +17,7 @@ const team: Person[] = [
     name: "Prabhat Ranjan Singh",
     initials: "PR",
     role: "Founder",
-    bio: "Prabhat leads GrowthAxis' work with institutions and organisations — across admissions, alliances, talent and operations.",
+    bio: "Prabhat leads GrowthAxis' work with institutions and organisations, across admissions, alliances, talent and operations.",
     linkedin: "https://www.linkedin.com/in/prabhat-ranjan-96804336/",
     photo: prabhatRanjan,
   },
@@ -43,7 +43,8 @@ const experience = [
   { years: "25", label: "years in Sales & Higher Education Marketing" },
 ];
 
-export default function WhoWeAre() {
+/* Used on home (with a link through to /about) and on /about itself (without it). */
+export default function WhoWeAre({ showMoreLink = true }: { showMoreLink?: boolean }) {
   return (
     <section id="team" className="scroll-mt-24 bg-surface pb-20 pt-10 md:pb-28 md:pt-12">
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
@@ -92,17 +93,19 @@ export default function WhoWeAre() {
           </div>
         </div>
 
-        <div data-reveal className="mt-10">
-          <Link
-            href="/about"
-            className="btn-glow group inline-flex items-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
-          >
-            More about GrowthAxis
-            <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-        </div>
+        {showMoreLink && (
+          <div data-reveal className="mt-10">
+            <Link
+              href="/about"
+              className="btn-glow group inline-flex items-center gap-2 rounded-md bg-ink px-6 py-2.5 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5"
+            >
+              More about GrowthAxis
+              <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

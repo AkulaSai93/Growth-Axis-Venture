@@ -22,7 +22,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} ${instrument.variable} h-full antialiased`}>
+    // data-scroll-behavior lets Next.js switch off our smooth scrolling while it changes pages,
+    // so every navigation starts at the top instead of animating up from wherever you were
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${manrope.variable} ${instrument.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

@@ -22,7 +22,7 @@ const ventures: Venture[] = [
     no: "02",
     name: "AdmitBridge",
     description:
-      "Your extended admissions team — course-specific pods working under your institution's identity, from first enquiry to enrolment.",
+      "Your extended admissions team, with course-specific pods working under your institution's identity, from first enquiry to enrolment.",
     href: "/admitbridge",
     visual: <FunnelVisual />,
   },
@@ -30,7 +30,7 @@ const ventures: Venture[] = [
     no: "03",
     name: "CreativeNext",
     description:
-      "A community for India's creative economy — connecting students, institutions, creative professionals and industry.",
+      "A community for India's creative economy, connecting students, institutions, creative professionals and industry.",
     href: "/creativenext",
     visual: <OrbitVisual />,
   },

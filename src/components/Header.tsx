@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const links = [
-  { name: "Ventures", href: "#ventures" },
+  { name: "Ventures", href: "/#ventures" },
   { name: "About", href: "/about" },
-  { name: "Team", href: "#team" },
 ];
 
 export function Logo({ light = false }: { light?: boolean }) {
@@ -36,16 +35,28 @@ export function Logo({ light = false }: { light?: boolean }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  // frosted bar once the hero has scrolled out from under the header
+  // solid white bar as soon as the page scrolls, so the logo never sits over hero text or photos
   const [scrolled, setScrolled] = useState(false);
 
+  // a link to the page you're already on (logo on home, "Talk to us" on /contact)
+  // doesn't navigate, so glide back to the top instead of doing nothing
   useEffect(() => {
-    // flip once the hero (first section) has scrolled out from under the header
-    const onScroll = () => {
-      const hero = document.querySelector("main > section");
-      const heroEnd = hero ? hero.getBoundingClientRect().bottom : 0;
-      setScrolled(heroEnd < 80);
+    const onClick = (e: MouseEvent) => {
+      // Next.js <Link> has already cancelled the click by the time it bubbles here, so don't check defaultPrevented
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest("a");
+      if (!a || a.target === "_blank") return;
+      const url = new URL(a.href, location.href);
+      if (url.origin === location.origin && url.pathname === location.pathname && !url.hash) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -62,7 +73,7 @@ export default function Header() {
         <Logo />
 
         <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded border border-line bg-white p-1 text-sm text-ink/75 md:flex"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 text-sm text-ink/75 md:flex"
         >
           {links.map((l) => (
             <Link

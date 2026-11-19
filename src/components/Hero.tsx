@@ -37,7 +37,7 @@ export default function Hero() {
             Building growth for institutions.
           </span>
           <span data-hero="line" className="block whitespace-nowrap">
-            Creating opportunities for people.
+            <span className="text-brand">Creating opportunities</span> for people.
           </span>
         </h1>
 

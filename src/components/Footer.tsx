@@ -37,7 +37,7 @@ export default function Footer() {
               Let&apos;s talk about your growth.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
-              Tell us about your institution, programme or idea — we usually reply within a
+              Tell us about your institution, programme or idea. We usually reply within a
               working day.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
