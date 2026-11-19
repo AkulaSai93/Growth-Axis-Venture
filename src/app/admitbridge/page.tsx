@@ -43,15 +43,16 @@ export default function AdmitBridgePage() {
       <Header />
       {/* white page sits over the footer with a rounded bottom edge (same as home) */}
       <main className="relative z-10 flex-1 overflow-hidden rounded-b-3xl bg-surface md:rounded-b-[40px]">
-        {/* hero: graduation caps tossed into a golden-hour sky, no people (Figma AI, node 55:3).
-            The centre stays clear to 64% down the photo (~20vw above the hero bottom).
+        {/* hero: graduation caps tossed in an arc against a soft daytime sky, no people
+            (Figma AI, node 62:3). Behind the copy the sky stays clear to 60% down the
+            photo (~22.2vw above the hero bottom); caps only reach the sides higher up.
             The photo runs full width along the bottom; its upper part is open sky,
-            so the centred copy (from the live page) sits on plain sky with no
-            overlay. The section's background is that sky colour and the photo's top
+            so the centred copy (from the live page) sits on it with no overlay.
+            The section's background is that sky colour and the photo's top
             edge fades into it, so the hero can fill the screen at any size. On phones
             and tablets the photo is cropped tighter (4:5, 4:3) so its subject stays
-            a readable size, and the phone hero is a compact 640px. */}
-        <section className="relative isolate flex min-h-[640px] justify-center overflow-hidden bg-[#8db9e7] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:min-h-[max(100svh,600px)] sm:px-8 lg:min-h-[max(100svh,56.25vw,calc(20vw_+_400px))]">
+            a readable size, and the phone hero is a compact 680px. */}
+        <section className="relative isolate flex min-h-[680px] justify-center overflow-hidden bg-[#92c8f8] px-5 pt-[clamp(120px,17vh,160px)] text-center sm:min-h-[max(100svh,600px)] sm:px-8 lg:min-h-[max(100svh,56.25vw,calc(22.2vw_+_400px))]">
           <div
             aria-hidden
             className="absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] [mask-image:linear-gradient(to_bottom,transparent,black_10%)] sm:aspect-[4/3] lg:aspect-video"
