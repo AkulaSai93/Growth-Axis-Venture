@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 const EMAIL = "connect@growthaxisventures.com";
 
@@ -21,12 +21,19 @@ function validate(f: Fields): Errors {
 /*
   Contact form with the live site's fields. There is no form backend yet, so on
   submit it opens the visitor's email app with the message addressed to
-  GrowthAxis and pre-filled.
+  GrowthAxis and pre-filled, clears the form and shows a thank-you popup
+  (a native <dialog>, so Esc, focus and the backdrop are handled by the browser).
 */
 export default function ContactForm() {
   const [fields, setFields] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // open the popup once a submission goes through
+  useEffect(() => {
+    if (sent) dialogRef.current?.showModal();
+  }, [sent]);
 
   const set = (key: keyof Fields) => (e: { target: { value: string } }) => {
     setFields((f) => ({ ...f, [key]: e.target.value }));
@@ -52,6 +59,7 @@ export default function ContactForm() {
       .filter((line, i, all) => line || all[i - 1] !== "")
       .join("\n");
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setFields(empty);
     setSent(true);
   }
 
@@ -121,20 +129,42 @@ export default function ContactForm() {
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </button>
-        <p role="status" className="text-center text-sm text-muted">
-          {sent ? (
-            <>
-              Your email app should open with your message ready to send. If it doesn&apos;t, write to us at{" "}
-              <a href={`mailto:${EMAIL}`} className="font-medium text-ink underline underline-offset-4">
-                {EMAIL}
-              </a>
-              .
-            </>
-          ) : (
-            "We usually reply within a working day."
-          )}
-        </p>
+        <p className="text-center text-sm text-muted">We usually reply within a working day.</p>
       </div>
+
+      {/* thank-you popup */}
+      <dialog
+        ref={dialogRef}
+        aria-labelledby="contact-success-title"
+        onClose={() => setSent(false)}
+        onClick={(e) => {
+          // a click on the backdrop (outside the card) closes it
+          if (e.target === e.currentTarget) e.currentTarget.close();
+        }}
+        className="m-auto w-[min(92vw,420px)] rounded-lg border border-line bg-white p-0 text-center backdrop:bg-ink/45 backdrop:backdrop-blur-sm open:animate-[pop_0.25s_ease-out]"
+      >
+        <div className="px-7 pb-7 pt-9">
+          <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#22c55e] text-white">
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="m5.5 12.5 4 4 9-9" />
+            </svg>
+          </span>
+          <h3 id="contact-success-title" className="mt-5 text-2xl font-medium tracking-[-0.03em] text-ink">
+            Thank you!
+          </h3>
+          <p className="mt-2 text-[15px] leading-relaxed text-muted">
+            Your response has been submitted successfully. We usually reply within a working day.
+          </p>
+          <button
+            type="button"
+            autoFocus
+            onClick={() => dialogRef.current?.close()}
+            className="btn-glow mt-6 inline-flex w-full items-center justify-center rounded-md bg-ink px-6 py-3 text-[15px] font-medium text-white"
+          >
+            Close
+          </button>
+        </div>
+      </dialog>
     </form>
   );
 }
