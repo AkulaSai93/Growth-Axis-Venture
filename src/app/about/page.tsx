@@ -52,15 +52,14 @@ export default function AboutPage() {
                 About GrowthAxis Ventures
               </span>
             </h1>
-            {/* two lines from xl up (one sentence each); balanced wrapping below that */}
+            {/* one centred block that wraps into ~3 balanced lines on desktop */}
             <p
               data-hero="fade"
-              className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-ink/80 sm:text-lg xl:max-w-none xl:text-[1.22vw]"
+              className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-ink/80 sm:text-lg lg:max-w-5xl xl:text-[1.3rem]"
             >
               GrowthAxis Ventures exists because good institutions often have strong programmes but not
-              enough reach, and the right connections can change that.
-              <br className="hidden xl:block" /> We help institutions grow through admissions, alliances and
-              the creative economy, working as a partner rather than an outside vendor.
+              enough reach, and the right connections can change that. We help institutions grow through
+              admissions, alliances and the creative economy, working as a partner rather than an outside vendor.
             </p>
           </div>
         </section>
